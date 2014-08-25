@@ -1,0 +1,37 @@
+#!/bin/sh
+
+PATH=/usr/sbin:/sbin:/usr/bin:/bin
+
+# We're following the standard used by other *root scripts here
+# for command-line arguments.  However, we don't use them, our
+# command-line parsing script writes the settings we need to
+# files in /tmp in the initramfs
+
+[ -z "$1" ] && exit 1
+[ -z "$2" ] && exit 1
+[ -z "$3" ] && exit 1
+
+netif="$1"
+root="$2"
+NEWROOT="$3"
+
+# Read the settings from the files created by a command-line
+# parsing script from /tmp
+read lustreserver < /tmp/lustre.server
+read lustrefs < /tmp/lustre.fs
+read lustrepath < /tmp/lustre.path
+# Create some new variables
+lustreroot="$lustreserver:$lustrefs"
+lustrerootpath="/lustremnt$lustrepath"
+
+# Make sure the required lustre kernel modules are loaded
+/sbin/modprobe lnet >/dev/null 2>&1
+/sbin/modprobe lustre >/dev/null 2>&1
+
+# Mount the lustre filesystem
+mount.lustre -o ro,localflock $lustreroot /lustremnt
+sleep 5
+# Bind mount the root path to $NEWROOT
+mount -B $lustrerootpath $NEWROOT
+
+exit 0

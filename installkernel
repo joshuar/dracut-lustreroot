@@ -1,0 +1,5 @@
+#!/bin/sh
+
+instmods fid fld llite_loop lmv lov lustre lvfs mdc mgc obdclass \
+	 obdecho osc ptlrpc ko2iblnd ksocklnd libcfs lnet lnet_selftest
+
