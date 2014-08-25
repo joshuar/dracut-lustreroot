@@ -26,4 +26,3 @@ root="lustrefs"
 netroot=lustre
 
 echo '[ -e $NEWROOT/proc ]' > /initqueue-finished/lustreroot.sh
-

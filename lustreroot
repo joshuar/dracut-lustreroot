@@ -17,12 +17,16 @@ NEWROOT="$3"
 
 # Read the settings from the files created by a command-line
 # parsing script from /tmp
-read lustreserver < /tmp/lustre.server
-read lustrefs < /tmp/lustre.fs
-read lustrepath < /tmp/lustre.path
+[ -r /tmp/lustre.server ] && read lustreserver < /tmp/lustre.server
+[ -r /tmp/lustre.server ] && read lustrefs < /tmp/lustre.fs
+[ -r /tmp/lustre.server ] && read lustrepath < /tmp/lustre.path
 # Create some new variables
 lustreroot="$lustreserver:$lustrefs"
-lustrerootpath="/lustremnt$lustrepath"
+if [ -n $lustrepath ] ; then
+    lustrerootpath="/lustremnt$lustrepath"
+else
+    lustrerootpath="/lustremnt"
+fi
 
 # Make sure the required lustre kernel modules are loaded
 /sbin/modprobe lnet >/dev/null 2>&1

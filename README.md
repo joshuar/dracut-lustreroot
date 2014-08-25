@@ -7,9 +7,10 @@ modules.
 
 # Requirements
 
- - A working Lustre cluster.
- - PXE boot network.
- - Dracut v003
+ - A working Lustre cluster/filesystem.
+ - Linux install on Lustre FS.
+ - PXE boot support on network.
+ - Dracut v003 or higher
 
 # Usage
 
@@ -17,8 +18,7 @@ modules.
 
  - Install this module under the dracut `modules.d` directory (usually
    located at either `/usr/share/dracut/modules.d` or
-   `/usr/lib/dracut/modules.d` depending on your distribution) in a
-   directory called `95lustre`.
+   `/usr/lib/dracut/modules.d` depending on your distribution.
 
 ## Configuration
 
