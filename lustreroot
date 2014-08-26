@@ -20,6 +20,7 @@ NEWROOT="$3"
 [ -r /tmp/lustre.server ] && read lustreserver < /tmp/lustre.server
 [ -r /tmp/lustre.server ] && read lustrefs < /tmp/lustre.fs
 [ -r /tmp/lustre.server ] && read lustrepath < /tmp/lustre.path
+[ -r /tmp/lustre.opts ] && read lustreopts < /tmp/lustre.opts
 # Create some new variables
 lustreroot="$lustreserver:$lustrefs"
 if [ -n $lustrepath ] ; then
@@ -27,13 +28,14 @@ if [ -n $lustrepath ] ; then
 else
     lustrerootpath="/lustremnt"
 fi
+[ -n $lustreopts ] && lustreopts="-o $lustreopts"
 
 # Make sure the required lustre kernel modules are loaded
 /sbin/modprobe lnet >/dev/null 2>&1
 /sbin/modprobe lustre >/dev/null 2>&1
 
 # Mount the lustre filesystem
-mount.lustre -o ro,localflock $lustreroot /lustremnt
+mount.lustre $lustreopts $lustreroot /lustremnt
 sleep 5
 # Bind mount the root path to $NEWROOT
 mount -B $lustrerootpath $NEWROOT

@@ -13,12 +13,20 @@ type getarg >/dev/null 2>&1 || . /lib/dracut-lib.sh
 lustreserver=$(getarg lustreserver=)
 lustrefs=$(getarg lustrefs=)
 lustrepath=$(getarg lustrepath=)
+lustreopts=$(getarg lustreopts=)
+if getarg ro ; then
+    [ -n $lustreopts ] && lustreopts="${lustreopts},ro" || lustreopts="ro"
+fi
+if getarg rw ; then
+    [ -n $lustreopts ] && lustreopts="${lustreopts},rw" || lustreopts="rw"
+fi
 # Write the argument values out to temporary files under /tmp
 # These will be used later by our lustreroot.sh script to
 # mount the lustre fs
 [ -n "$lustreserver" ] && echo $lustreserver > /tmp/lustre.server
 [ -n "$lustrefs" ] && echo $lustrefs > /tmp/lustre.fs
 [ -n "$lustrepath" ] && echo $lustrepath > /tmp/lustre.path
+[ -n "$lustreopts" ] && echo $lustreopts > /tmp/lustre.opts
 
 # Set required variables so dracut doesn't complain
 rootok=1

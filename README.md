@@ -23,7 +23,7 @@ modules.
 ## Configuration
 
  - Edit the dracut configuration file and change the
-   `DRACUT_ADDMODULES` parameter to include "lustre".
+   `dracut_addmodules` parameter to include *lustre*.
  - Edit your kernel command-line and include the following three
    arguments as outlined below:
   - `lustreserver`: IP address and interface on which to connect to
@@ -32,6 +32,7 @@ modules.
   - `lustrefs`: Lustre filesystem to mount. e.g., `/lustrefs1`.
   - `lustrepath`: Directory path on Lustre filesystem to use as root.
    e.g., `/images/centos/6.5`.
+  - `lustreopts`: Mount options for Lustre.  See **mount.lustre(8)**.
  - Rebuild your initramfs with dracut.
 
 # Limitations
