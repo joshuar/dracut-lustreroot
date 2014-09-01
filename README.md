@@ -30,9 +30,9 @@ modules.
    lustre server in *lnet* format. e.g., `IPaddr@o2ib` or
    `IPaddr@tcp0`.
   - `lustrefs`: Lustre filesystem to mount. e.g., `/lustrefs1`.
-  - `lustrepath`: Directory path on Lustre filesystem to use as root.
+  - *(Optional)* `lustrepath`: Directory path on Lustre filesystem to use as root.
    e.g., `/images/centos/6.5`.
-  - `lustreopts`: Mount options for Lustre.  See **mount.lustre(8)**.
+  - *(Optional)* `lustreopts`: Mount options for Lustre.  See **mount.lustre(8)**.
  - Rebuild your initramfs with dracut.
 
 # Limitations
