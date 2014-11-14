@@ -4,7 +4,6 @@ inst_hook cmdline 90 "$moddir/parse-lustre-opts.sh"
 
 dracut_install mount.lustre lustre_routes_config lctl
 inst_dir /lustremnt
-inst_rules /etc/udev/rules.d/99-lustre.rules
-dracut_install /etc/modprobe.d/lnet.conf
+[ -e /etc/udev/rules.d/99-lustre.rules ] && inst_rules /etc/udev/rules.d/99-lustre.rules
+[ -e /etc/modprobe.d/lnet.conf ] && dracut_install /etc/modprobe.d/lnet.conf
 inst "$moddir/lustreroot" "/sbin/lustreroot"
-
