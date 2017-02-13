@@ -33,7 +33,6 @@ mount.lustre $lustreopts $lustreroot /lustremnt
 sleep 5
 # Bind mount the root path to $NEWROOT
 NEWROOT=/sysroot
-#echo "mount -B $lustrerootpath $NEWROOT" > /mount_command2.sh
 mount -B $lustrerootpath $NEWROOT
 
 exit 0
