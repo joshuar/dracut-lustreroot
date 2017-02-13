@@ -2,15 +2,6 @@
 
 PATH=/usr/sbin:/sbin:/usr/bin:/bin
 
-# We're following the standard used by other *root scripts here
-# for command-line arguments.  However, we don't use them, our
-# command-line parsing script writes the settings we need to
-# files in /tmp in the initramfs
-
-#[ -z "$1" ] && exit 1
-#[ -z "$2" ] && exit 1
-#[ -z "$3" ] && exit 1
-
 netif="$1"
 root="$2"
 NEWROOT="$3"
