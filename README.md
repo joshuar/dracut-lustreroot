@@ -19,6 +19,8 @@ modules.
  - Install this module under the dracut `modules.d` directory (usually
    located at either `/usr/share/dracut/modules.d` or
    `/usr/lib/dracut/modules.d` depending on your distribution.
+ - You can safely remove files with names referencing an OS you don't use
+ - Remove release name from file names (e.g. `mv install-centos6.5 install`)
 
 ## Configuration
 
@@ -37,4 +39,4 @@ modules.
 
 # Limitations
 
- - Only tested with CentOS 6.5.
+ - Only tested with CentOS, releases 6.5 and 7.3.
